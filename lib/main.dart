@@ -35,25 +35,17 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            OfferBuilder(
+              cardHeight: 70,
+              flashSaleList: flashSaleExample,
+              // duration:  Duration(seconds: 5),
+            ),
+            const SizedBox(height: 20),
             NewsTickerBuilder(
               newsList: newsExample,
               duration: TickerDuration.short,
             ),
-            // OfferBuilder(
-            //   cardHeight: 70,
-            //   flashSaleList: flashSaleExample,
-            //   // duration:  Duration(seconds: 5),
-            // ),
-            // NewsTickerBuilder(
-            //   newsList: newsExample,
-            //   duration: TickerDuration.short,
-            // ),
-            // const Expanded(child: SizedBox()),
-            // OfferBuilder(
-            //   cardHeight: 70,
-            //   flashSaleList: flashSaleExample,
-            //   // duration:  Duration(seconds: 5),
-            // ),
+
           ],
         ),
       ),

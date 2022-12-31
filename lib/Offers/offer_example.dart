@@ -1,82 +1,27 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-void main() {
-  runApp(const MyApp());
-}
+import 'package:flutter_news_ticker/News/news_example.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'News Ticker Demo',
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
-      home: const HomePage(),
-    );
-  }
-}
-
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            OfferBuilder(
-              cardHeight: 70,
-              flashSaleList: flashSaleExample,
-              // duration:  Duration(seconds: 5),
-            ),
-
-          ],
-        ),
-      ),
-    );
-  }
-}
-class Offer {
-  final int id;
-  final String text;
-
-  const Offer({
-    required this.id,
-    required this.text,
-  });
-
-  factory Offer.fromMap(Map<String, dynamic> map) {
-    return Offer(
-      id: map['id'] ?? 0,
-      text: map['text'] ?? '',
-    );
-  }
-}
-
-List<Offer> flashSaleExample = const [
-  Offer(
+List<TickerData> flashSaleExample = const [
+  TickerData(
     id: 1,
-    text: '-50% OFF- on all products',
+    title: '-50% OFF- on all products',
+    description: '',
   ),
-  Offer(
+  TickerData(
     id: 2,
-    text: 'Harry Up! Up to -10% OFF- on -Home Decor-',
+    title: 'Harry Up! Up to -10% OFF- on -Home Decor-',
+    description: '',
   ),
-  Offer(
+  TickerData(
     id: 3,
-    text: '-Free- Shipping on orders over -\$40-',
+    title: '-Free- Shipping on orders over -\$40-',
+    description: '',
   ),
 ];
 
 class OfferBuilder extends StatefulWidget {
-  final List<Offer> flashSaleList;
+  final List<TickerData> flashSaleList;
   final Duration duration;
   final double cardHeight;
 
@@ -151,7 +96,7 @@ class _OfferBuilderState extends State<OfferBuilder> {
 }
 
 class OfferCard extends StatelessWidget {
-  final Offer flashSale;
+  final TickerData flashSale;
   final Duration? duration;
   final double cardHeight;
 
@@ -176,7 +121,7 @@ class OfferCard extends StatelessWidget {
           child: Builder(builder: (context) {
             final List <TextSpan> textSpans = [];
 
-            final splitText = flashSale.text.split('-');
+            final splitText = flashSale.title.split('-');
 
             for (var i = 0; i < splitText.length; i++) {
               if (i % 2 == 0) {
